@@ -1,5 +1,4 @@
 import sys
-from collections import defaultdict
 
 
 def count_sum_of_lines_with_numbers(lines_with_numbers):
@@ -15,19 +14,18 @@ def solve_puzzle_2(puzzle_input):
     lines_with_numbers = filter(lambda line: line != "", puzzle_input.split("\n"))
     numbers = list(map(int, lines_with_numbers))
 
-    frequencies_occurrence = defaultdict(int)
     current_frequency = 0
-    frequencies_occurrence[current_frequency] += 1
+    frequencies_occurrence = {current_frequency}
 
     numbers_count = len(numbers)
     i = 0
     while True:
         number = numbers[i % numbers_count]
         current_frequency += number
-        frequencies_occurrence[current_frequency] += 1
-        if frequencies_occurrence[current_frequency] == 2:
+        if current_frequency in frequencies_occurrence:
             print("Answer for day1, exercise 2: %s" % current_frequency)
             break
+        frequencies_occurrence.add(current_frequency)
         i += 1
 
 
