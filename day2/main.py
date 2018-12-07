@@ -29,9 +29,53 @@ def solve_puzzle_1(puzzle_input):
     print("Answer for day1, exercise 1: %s" % checksum)
 
 
+def differ_by_exactly_1_letter(word1, word2):
+    one_difference_found = False
+
+    for i, letter in enumerate(word1):
+        if word2[i] != letter:
+            if one_difference_found:
+                return False
+            one_difference_found = True
+
+    return one_difference_found
+
+
+def find_common_letters(word1, word2):
+    def yield_letters():
+        for i, letter in enumerate(word1):
+            if word2[i] == letter:
+                yield letter
+    return "".join(list(yield_letters()))
+    # common_letters = list(filter(lambda index_with_letter: word2[index_with_letter[0]] == index_with_letter[1], enumerate(word1)))
+    # print(common_letters)
+    # return common_letters
+
+
+def solve_puzzle_2(puzzle_input):
+    words = list(filter(lambda line: line != "", puzzle_input.split("\n")))
+    found = False
+    for word1 in words:
+        for word2 in words:
+            if differ_by_exactly_1_letter(word1, word2):
+                found = True
+                print("Answer for day1, exercise 2: %s" % find_common_letters(word1, word2))
+                break
+        if found:
+            break
+
+
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
-        print("No input given. Specify a path to the input file.")
-        print("python main.py path-to-input")
+        print("No input_exercise1 given. Specify a path to the input_exercise1 file.")
+        print("python main.py path-to-input_exercise1")
     else:
         solve_puzzle_1(open(sys.argv[1]).read())
+        solve_puzzle_2(open(sys.argv[1]).read())
+        # print(differ_by_more_than_1_letter("ola", "dla"))
+        # print(differ_by_more_than_1_letter("ola", "kla"))
+        # print(differ_by_more_than_1_letter("ola", "ola"))
+        # print(differ_by_more_than_1_letter("ola", "ala"))
+        # print(differ_by_more_than_1_letter("ola", "alk"))
+        # print(differ_by_more_than_1_letter("mama", "tata"))
+        # print(differ_by_more_than_1_letter("12345", "23456"))
