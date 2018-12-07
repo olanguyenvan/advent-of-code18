@@ -47,9 +47,6 @@ def find_common_letters(word1, word2):
             if word2[i] == letter:
                 yield letter
     return "".join(list(yield_letters()))
-    # common_letters = list(filter(lambda index_with_letter: word2[index_with_letter[0]] == index_with_letter[1], enumerate(word1)))
-    # print(common_letters)
-    # return common_letters
 
 
 def solve_puzzle_2(puzzle_input):
@@ -72,10 +69,3 @@ if __name__ == "__main__":
     else:
         solve_puzzle_1(open(sys.argv[1]).read())
         solve_puzzle_2(open(sys.argv[1]).read())
-        # print(differ_by_more_than_1_letter("ola", "dla"))
-        # print(differ_by_more_than_1_letter("ola", "kla"))
-        # print(differ_by_more_than_1_letter("ola", "ola"))
-        # print(differ_by_more_than_1_letter("ola", "ala"))
-        # print(differ_by_more_than_1_letter("ola", "alk"))
-        # print(differ_by_more_than_1_letter("mama", "tata"))
-        # print(differ_by_more_than_1_letter("12345", "23456"))
